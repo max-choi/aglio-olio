@@ -1,0 +1,6 @@
+applications:
+  name: market
+  host: market
+  memory: 1024M
+  path: ./market-0.0.1-SNAPSHOT.war
+  buildpack: java_buildpack
