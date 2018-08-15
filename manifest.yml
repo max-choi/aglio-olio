@@ -1,5 +1,5 @@
 applications:
-  name: market
+- name: market
   host: market
   memory: 1024M
   path: ./market-0.0.1-SNAPSHOT.war
