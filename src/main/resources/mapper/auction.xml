@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.olio.aglio.market.repository.AuctionItemRepository">
+
+    <select id="getAuctionStats" resultType="com.olio.aglio.market.model.AuctionStat">
+        SELECT * FROM auction_stats_daily
+    </select>
+
+    <insert id="insertAuctionStats">
+        INSERT INTO auction_stats_daily (
+        aucng_de, seq_no, pblmng_whsal_mrkt_nm, pblmng_whsal_mrkt_cd, cpr_nm,
+        cpr_cd, prdlst_nm, prdlst_cd, spcies_nm, spcies_cd, grad,
+        grad_cd, delngbundle_qy, stndrd, stndrd_cd, delng_qy, mumm_amt,
+        avrg_amt, mxmm_amt, auc_co, created_at
+        )
+        VALUES
+        <foreach collection="list" item="stat" separator=",">
+            (
+            #{stat.aucngDe}, #{stat.seqNo}, #{stat.pblmngWhsalMrktNm}, #{stat.pblmngWhsalMrktCd}, #{stat.cprNm},
+            #{stat.cprCd}, #{stat.prdlstNm}, #{stat.prdlstCd}, #{stat.spciesNm}, #{stat.spciesCd}, #{stat.grad},
+            #{stat.gradCd}, #{stat.delngbundleQy}, #{stat.stndrd}, #{stat.stndrdCd}, #{stat.delngQy}, #{stat.mummAmt},
+            #{stat.avrgAmt}, #{stat.mxmmAmt}, #{stat.aucCo}, #{stat.createdAt}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertAuctionCodes">
+        INSERT IGNORE INTO auction_code (
+        code, type, name
+        )
+        VALUES
+        <foreach collection="list" item="code" separator=",">
+            (
+            #{code.code}, #{code.type}, #{code.name}
+            )
+        </foreach>
+    </insert>
+</mapper>

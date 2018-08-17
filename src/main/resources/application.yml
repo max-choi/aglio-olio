@@ -4,3 +4,8 @@ spring:
     username: 80c7b6134fb12aa9
     password: 6c10fa18e34e86cd
     driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 5
+mybatis:
+  config-location: classpath:mybatis-config.xml
