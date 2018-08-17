@@ -3,7 +3,9 @@ package com.olio.aglio.market.model.external;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.thymeleaf.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -34,7 +36,7 @@ public class RawData {
     @JsonProperty("GRAD_CD")
     private String gradCd; // 등급코드
     @JsonProperty("DELNGBUNDLE_QY")
-    private long delngbundleQy; // 거래단량
+    private BigDecimal delngbundleQy; // 거래단량
     @JsonProperty("STNDRD")
     private String stndrd; // 규격
     @JsonProperty("STNDRD_CD")
@@ -49,4 +51,52 @@ public class RawData {
     private long mxmmAmt; // 최대가
     @JsonProperty("AUC_CO")
     private int aucCo; // 경매건수
+
+    public String getPblmngWhsalMrktNm() {
+        return StringUtils.trim(pblmngWhsalMrktNm);
+    }
+
+    public String getPblmngWhsalMrktCd() {
+        return StringUtils.trim(pblmngWhsalMrktCd);
+    }
+
+    public String getCprNm() {
+        return StringUtils.trim(cprNm);
+    }
+
+    public String getCprCd() {
+        return StringUtils.trim(cprCd);
+    }
+
+    public String getPrdlstNm() {
+        return StringUtils.trim(prdlstNm);
+    }
+
+    public String getPrdlstCd() {
+        return StringUtils.trim(prdlstCd);
+    }
+
+    public String getSpciesNm() {
+        return StringUtils.trim(spciesNm);
+    }
+
+    public String getSpciesCd() {
+        return StringUtils.trim(spciesCd);
+    }
+
+    public String getGrad() {
+        return StringUtils.trim(grad);
+    }
+
+    public String getGradCd() {
+        return StringUtils.trim(gradCd);
+    }
+
+    public String getStndrd() {
+        return StringUtils.trim(stndrd);
+    }
+
+    public String getStndrdCd() {
+        return StringUtils.trim(stndrdCd);
+    }
 }

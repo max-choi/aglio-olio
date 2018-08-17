@@ -9,3 +9,13 @@ spring:
       maximum-pool-size: 5
 mybatis:
   config-location: classpath:mybatis-config.xml
+api:
+  type: json
+  key: sample
+
+---
+spring:
+  profiles: cloud
+api:
+  type: json
+  key: 0090a9d2727bba40209dceda6622021138a5746728d91bc567f43021aa623669

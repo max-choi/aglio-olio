@@ -3,7 +3,11 @@
 <mapper namespace="com.olio.aglio.market.repository.AuctionItemRepository">
 
     <select id="getAuctionStats" resultType="com.olio.aglio.market.model.AuctionStat">
-        SELECT * FROM auction_stats_daily
+        SELECT * FROM auction_stats_daily LIMIT 1000
+    </select>
+
+    <select id="getFirstAuctionStatDate" resultType="java.time.LocalDate">
+        SELECT aucng_de FROM auction_stats_daily LIMIT 1
     </select>
 
     <insert id="insertAuctionStats">
@@ -35,4 +39,8 @@
             )
         </foreach>
     </insert>
+
+    <delete id="deleteActionStatsByDate">
+        DELETE FROM auction_stats_daily WHERE aucng_de = #{aucngDe}
+    </delete>
 </mapper>

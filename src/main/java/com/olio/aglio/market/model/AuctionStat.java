@@ -2,6 +2,7 @@ package com.olio.aglio.market.model;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,10 +20,10 @@ public class AuctionStat {
     private String spciesCd; // 품종코드
     private String grad; // 등급
     private String gradCd; // 등급코드
-    private long delngbundleQy; // 거래단량
+    private BigDecimal delngbundleQy; // 거래단량
     private String stndrd; // 규격
     private String stndrdCd; // 규격코드
-    private int delngQy; // 거래량
+    private Integer delngQy; // 거래량
     private long mummAmt; // 최소가
     private long avrgAmt; // 평균가
     private long mxmmAmt; // 최대가

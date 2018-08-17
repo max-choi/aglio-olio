@@ -18,13 +18,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class MigrationService {
 
-    private static final int FETCH_SIZE = 5;
+    private static final int FETCH_SIZE = 1000;
 
     @Autowired
     private MarketApiRepository marketApiRepository;
@@ -32,9 +33,11 @@ public class MigrationService {
     @Autowired
     private AuctionItemRepository auctionItemRepository;
 
-    public void migrationDaily(LocalDate date) {
+    public int migrationDaily(LocalDate date) {
 
         ModelMapper modelMapper = new ModelMapper();
+
+        final AtomicInteger maxScale = new AtomicInteger();
 
         int from = 1;
         int to = FETCH_SIZE;
@@ -67,8 +70,11 @@ public class MigrationService {
 
             LocalDateTime now = LocalDateTime.now();
             List<AuctionStat> actionItems = response.getRoot().getRow().stream()
-                    .map(marketData -> modelMapper.map(marketData, AuctionStat.class))
+                    .map(rawData -> modelMapper.map(rawData, AuctionStat.class))
                     .peek(auctionStat -> {
+                        if (auctionStat.getDelngbundleQy().scale() > maxScale.intValue()) {
+                            maxScale.set(auctionStat.getDelngbundleQy().scale());
+                        }
                         mrktCodeMap.put(auctionStat.getPblmngWhsalMrktCd(), auctionStat.getPblmngWhsalMrktNm());
                         cprCodeMap.put(auctionStat.getCprCd(), auctionStat.getCprNm());
                         prdlstCodeMap.put(auctionStat.getPrdlstCd(), auctionStat.getPrdlstNm());
@@ -94,7 +100,7 @@ public class MigrationService {
             from += FETCH_SIZE;
             to += FETCH_SIZE;
         }
-
+        return maxScale.intValue();
     }
 
     private List<AuctionCode> convertToAuctionCodes(Map<String, String> codeMap, int type) {
