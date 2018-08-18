@@ -1,12 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://133.186.153.136:3306/op_d0d83b49_ce91_48e4_9315_b1ab65af8539
-    username: 80c7b6134fb12aa9
-    password: 6c10fa18e34e86cd
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mariadb://133.186.153.136:3306/op_7b7bf585_d1ab_4d19_8bb1_42f50e4e37e6
+    username: 841dcc9e8d0fbec1
+    password: e2692e56b80ced50
+    driver-class-name: org.mariadb.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      maximum-pool-size: 5
 mybatis:
   config-location: classpath:mybatis-config.xml
 api:

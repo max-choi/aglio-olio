@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -24,7 +23,7 @@ public class MigrationSchedule {
     @Autowired
     private MigrationService migrationService;
 
-    @Scheduled(fixedDelay = 60 * 60 * 1000)
+    // @Scheduled(fixedDelay = 60 * 60 * 1000)
     public void migrate() {
         log.info("activeProfile = {}", activeProfile);
         if (StringUtils.equals(activeProfile, "cloud")) {

@@ -44,7 +44,7 @@ dependencies {
 	compile('com.fasterxml.jackson.module:jackson-module-parameter-names')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jdk8')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	compile('org.mariadb.jdbc:mariadb-java-client:2.2.6')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
